@@ -1,0 +1,79 @@
+// Block definition (there may be more than one block per file) 
+FUNCTION_BLOCK fuzzy
+
+// Define input variables   
+VAR_INPUT
+    importancia : REAL;
+    risco : REAL;
+END_VAR
+
+// Define output variable   
+VAR_OUTPUT
+    relevancia : REAL;
+END_VAR
+
+// Fuzzify input variable 'importancia'   
+FUZZIFY importancia
+    TERM baixa := (1, 1) (3,0) ;
+    TERM media := (2,0) (3,1) (4,0);
+    TERM alta := (3,0) (5,1);
+END_FUZZIFY
+
+// Fuzzify input variable 'risco'   
+FUZZIFY risco
+    TERM baixo := (1, 1) (3,0) ;
+    TERM medio := (2,0) (3,1) (4,0);
+    TERM alto := (3,0) (5,1);
+END_FUZZIFY
+
+// Defzzzify output variable 'relevancia'
+DEFUZZIFY relevancia
+    TERM muito_baixa := (0,1) (3,0) ;
+    TERM baixa := (1,0) (3,1) (5,0);
+    TERM media := (3,0) (5,1) (7,0);
+    TERM alta := (5,0) (7,1) (9,0);
+    TERM muito_alta := (7,0) (10,1);
+    // Use 'Center Of Gravity' defuzzification method
+    METHOD : COG;
+    // Default value is 0 (if no rule activates defuzzifier)
+    DEFAULT := 0;
+END_DEFUZZIFY
+
+RULEBLOCK No1
+    // Use 'min' for 'and' (also implicit use 'max'
+    // for 'or' to fulfill DeMorgan's Law)
+    AND : MIN;
+    // Use 'min' activation method
+    ACT : MIN;
+    // Use 'max' accumulation method
+    ACCU : MAX;
+
+    RULE 1 : IF importancia IS baixa AND risco IS alto 
+                THEN relevancia IS muito_baixa;
+
+    RULE 2 : IF importancia IS baixa AND risco IS medio 
+                THEN relevancia IS baixa; 
+
+    RULE 3 : IF importancia IS baixa AND risco IS baixo 
+                THEN relevancia is media;
+
+    RULE 4 : IF importancia IS media AND risco IS alto 
+                THEN relevancia IS baixa;
+
+    RULE 5 : IF importancia IS media AND risco IS medio 
+                THEN relevancia IS media; 
+
+    RULE 6 : IF importancia IS media AND risco IS baixo 
+                THEN relevancia is alta;
+
+    RULE 7 : IF importancia IS alta AND risco IS alto 
+                THEN relevancia IS media;
+
+    RULE 8 : IF importancia IS alta AND risco IS medio 
+                THEN relevancia IS alta;
+
+    RULE 9 : IF importancia IS alta AND risco IS baixo 
+                THEN relevancia IS muito_alta;
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK

@@ -12,7 +12,7 @@ import net.sourceforge.jFuzzyLogic.FIS;
 public class TesteFuzzy {
     public static void main(String[] args) throws Exception {
         // Load from 'FCL' file
-        String fileName = "/Users/lailson/NetBeansProjects/JFuzzyLogic/src/jfuzzylogic/relevancia.fcl";
+        String fileName = "src/jfuzzylogic/relevancia.fcl";
         FIS fis = FIS.load(fileName,true);
         // Error while loading?
         if( fis == null ) { 

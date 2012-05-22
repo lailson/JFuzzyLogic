@@ -1,39 +1,39 @@
 // Block definition (there may be more than one block per file) 
 FUNCTION_BLOCK fuzzy
 
-// Define input variables   
+// Define variaveis de entrada
 VAR_INPUT
     importancia : REAL;
     risco : REAL;
 END_VAR
 
-// Define output variable   
+// Define variaveis de saida   
 VAR_OUTPUT
     relevancia : REAL;
 END_VAR
 
-// Fuzzify input variable 'importancia'   
+// Fuzzify variavel de entrada: 'importancia'   
 FUZZIFY importancia
     TERM baixa := (1, 1) (3,0) ;
     TERM media := (2,0) (3,1) (4,0);
     TERM alta := (3,0) (5,1);
 END_FUZZIFY
 
-// Fuzzify input variable 'risco'   
+// Fuzzify variavel de entrada: 'risco'   
 FUZZIFY risco
     TERM baixo := (1, 1) (3,0) ;
     TERM medio := (2,0) (3,1) (4,0);
     TERM alto := (3,0) (5,1);
 END_FUZZIFY
 
-// Defzzzify output variable 'relevancia'
+// Defzzzify variavel de saida: 'relevancia'
 DEFUZZIFY relevancia
     TERM muito_baixa := (0,1) (3,0) ;
     TERM baixa := (1,0) (3,1) (5,0);
     TERM media := (3,0) (5,1) (7,0);
     TERM alta := (5,0) (7,1) (9,0);
     TERM muito_alta := (7,0) (10,1);
-    // Use 'Center Of Gravity' defuzzification method
+    // Usar metodo de defuzzificação: Centro de Gravidade (COG)
     METHOD : COG;
     // Default value is 0 (if no rule activates defuzzifier)
     DEFAULT := 0;

@@ -34,7 +34,7 @@ DEFUZZIFY relevancia
     TERM alta := (5,0) (7,1) (9,0);
     TERM muito_alta := (7,0) (10,1);
     // Usar metodo de defuzzificação: Centro de Gravidade (COG)
-    METHOD : COG;
+    METHOD : RM;
     // Default value is 0 (if no rule activates defuzzifier)
     DEFAULT := 0;
 END_DEFUZZIFY

@@ -6,7 +6,7 @@ package coloniaformiga;
 
 /**
  *
- * @author flamengo
+ * @author lailson
  */
 public class Requisito {
        private static final int NUM_REQUISITOS = 12;

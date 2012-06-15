@@ -6,7 +6,7 @@ package coloniaformiga;
 
 /**
  *
- * @author flamengo
+ * @author lailson
  */
 public class ColoniaFormiga {
 

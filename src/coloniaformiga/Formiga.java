@@ -8,12 +8,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author flamengo
+ * @author lailson
  */
 public class Formiga {
 
     ArrayList<Requisito> mochila = new ArrayList<Requisito>();
-    ArrayList<Requisito> tabu = new ArrayList<Requisito>();
     private int passos = 0;
 
     public Formiga() {

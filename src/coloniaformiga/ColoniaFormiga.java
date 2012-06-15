@@ -12,7 +12,7 @@ public class ColoniaFormiga {
 
     private static int NUM_REQUISITOS = 13;
     private static int NUM_FORMIGAS = 13;
-    private static double TAM_MAX = 0.3;
+    private static double TAM_MAX = 0.7;
     private static double ALFA = 0.5; //Nivel de importancia do feromonio
     private static double BETA = 0.5; //Nivel de importancia da desejabilidade
     private static double EVAPORACAO = 0.5;
@@ -25,6 +25,7 @@ public class ColoniaFormiga {
 
         //Iniciar Requisitos
         Requisito[] item = new Requisito[NUM_REQUISITOS];
+        //item[] = new Requisito("Nome",Relevancia, Tamanho)
         item[0] = new Requisito("Notificate by email", 2, 16);
         item[1] = new Requisito("Change password", 5, 10);
         item[2] = new Requisito("Register users", 7, 16);
@@ -121,10 +122,12 @@ public class ColoniaFormiga {
 
             }//Fim do FOR
 
+            //Solucao
             System.out.println("solucao: " + solucao);
             System.out.println("Quant requisitos: " + num + " Tamanho da mochila: " + tam);
             for(i=0;i<formiga[solucao].mochila.size();i++){
-            System.out.println("nome: "+formiga[solucao].mochila.get(i).getNome());
+            System.out.println("nome: "+formiga[solucao].mochila.get(i).getNome()+ " Relevancia: "+formiga[solucao].mochila.get(i).getRelevancia() + " Tamanho: "+formiga[solucao].mochila.get(i).getTamanho() );
+            
             }
             //Atualizar Feromonio
             for (i = 0; i < NUM_REQUISITOS; i++) {

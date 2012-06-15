@@ -63,14 +63,14 @@ public class JFuzzy {
         fis.setVariable("risco", 2);
         fis.evaluate();
         //fis.getVariable("relevancia").chartDefuzzifier(true);
-        System.out.println("Requisito 5: cancel borrowing request = "+fis.getVariable("relevancia").getValue());
+        System.out.println("Requisito 5: borrowing request = "+fis.getVariable("relevancia").getValue());
         
         //Requisito: Register book
         fis.setVariable("importancia", 4);
         fis.setVariable("risco", 2);
         fis.evaluate();
         fis.getVariable("relevancia").chartDefuzzifier(true);
-        System.out.println("Requisito 6:Register book = "+fis.getVariable("relevancia").getValue());
+        System.out.println("Requisito 6: Register book = "+fis.getVariable("relevancia").getValue());
         
         //Requisito: cancel borrowing request
         fis.setVariable("importancia", 3);
@@ -84,7 +84,7 @@ public class JFuzzy {
         fis.setVariable("risco", 3);
         fis.evaluate();
         //fis.getVariable("relevancia").chartDefuzzifier(true);
-        System.out.println("Requisito 8:Register publication = "+fis.getVariable("relevancia").getValue());
+        System.out.println("Requisito 8: Register publication = "+fis.getVariable("relevancia").getValue());
         
         //Requisito: Confirm borrowing
         fis.setVariable("importancia", 3);

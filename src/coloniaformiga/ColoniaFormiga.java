@@ -12,7 +12,7 @@ public class ColoniaFormiga {
 
     private static int NUM_REQUISITOS = 13;
     private static int NUM_FORMIGAS = 13;
-    private static double TAM_MAX = 0.7;
+    private static double TAM_MAX = 0.3;
     private static double ALFA = 0.5; //Nivel de importancia do feromonio
     private static double BETA = 0.5; //Nivel de importancia da desejabilidade
     private static double EVAPORACAO = 0.5;
@@ -21,6 +21,8 @@ public class ColoniaFormiga {
     public static void main(String[] args) {
         int i, j;
         
+        int iteracoes = 30, w;
+        for (w = 0; w < iteracoes; w++) {
         double[] probabilidade = new double[NUM_REQUISITOS];
 
         //Iniciar Requisitos
@@ -40,8 +42,7 @@ public class ColoniaFormiga {
         item[11] = new Requisito("request borrowing ", 7, 10);
         item[12] = new Requisito("borrowing report", 6, 5);
 
-        int iteracoes = 30, w;
-        for (w = 0; w < iteracoes; w++) {
+        
         double tam_max = 0;
         //Iniciar formigas
         Formiga[] formiga = new Formiga[13];
@@ -85,7 +86,7 @@ public class ColoniaFormiga {
             //Loop
 
             int solucao = 0, num = 0;
-            double tam = tam_max;
+            double tam = 0;
             for (j = 0; j < NUM_REQUISITOS; j++) {
                 int cont = 0;
                 while (formiga[j].pesoMochila() < tam_max && cont < 20) {
@@ -112,7 +113,7 @@ public class ColoniaFormiga {
 
                 //Escolher solucao melhor
                 //System.out.println("Num: "+ num + " Tam: "+ tam);    
-                if (formiga[j].mochila.size() > num || (formiga[j].pesoMochila() <= tam && formiga[j].mochila.size() == num)) {
+                if (formiga[j].pesoMochila() > tam || formiga[j].pesoMochila() == tam && formiga[j].mochila.size() > num) {
                     num = formiga[j].mochila.size();
                     tam = formiga[j].pesoMochila();
                     solucao = j;
@@ -126,7 +127,7 @@ public class ColoniaFormiga {
             System.out.println("solucao: " + solucao);
             System.out.println("Quant requisitos: " + num + " Tamanho da mochila: " + tam);
             for(i=0;i<formiga[solucao].mochila.size();i++){
-            System.out.println("nome: "+formiga[solucao].mochila.get(i).getNome()+ " Relevancia: "+formiga[solucao].mochila.get(i).getRelevancia() + " Tamanho: "+formiga[solucao].mochila.get(i).getTamanho() );
+            //System.out.println("nome: "+formiga[solucao].mochila.get(i).getNome()+ " Relevancia: "+formiga[solucao].mochila.get(i).getRelevancia() + " Tamanho: "+formiga[solucao].mochila.get(i).getTamanho() );
             
             }
             //Atualizar Feromonio
@@ -142,6 +143,7 @@ public class ColoniaFormiga {
         for (i = 0; i < NUM_FORMIGAS; i++) {
             formiga[i].mochila.clear();
         }
+
         }//Fim da Iteracao
 
     }
